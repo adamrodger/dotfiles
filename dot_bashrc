@@ -1,2 +1,6 @@
-alias k=kubectl
+test -f ~/.aliases && . ~/.aliases
+test -f ~/.bash_functions && . ~/.bash_functions
 
+export EDITOR=vim
+export KUBE_EDITOR=$EDITOR
+export LANG=en_GB.UTF-8

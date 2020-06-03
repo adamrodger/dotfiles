@@ -1,0 +1,28 @@
+" auto wrap at 120 chars
+set textwidth=120
+set wrap linebreak nolist
+set expandtab
+
+" 4 space tabs
+set tabstop=4
+set shiftwidth=4
+set ffs=dos,unix
+
+" Code help
+set autoindent
+set smartindent
+set bg=dark
+
+" ignore whitespace in vimdiff
+if &diff
+    " diff mode
+    set diffopt+=iwhite
+endif
+
+" Copy/paste toggle
+set pastetoggle=<F8>
+
+" Spell checking in Markdown
+autocmd BufRead,BufNewFile *.md setlocal spell
+
+:start

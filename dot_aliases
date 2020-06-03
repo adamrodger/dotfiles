@@ -1,0 +1,6 @@
+alias cm='chezmoi'
+alias db='docker build'
+alias k='kubectl'
+alias kc='kubectx'
+alias kn='kubens'
+alias ll='ls -alh'

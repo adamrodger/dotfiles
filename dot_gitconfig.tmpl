@@ -1,9 +1,61 @@
 [user]
-    email = "{{ .email }}"
     name = Adam Rodger
+    email = {{ .email }}
+[push]
+    default = simple
 [alias]
+    cp = cherry-pick
     st = status
-    br = branch
+    cl = clone
+    ci = commit
     co = checkout
-    diffc = diff --cached
+    br = branch 
+    diff = diff --word-diff
+    dc = diff --cached --word-diff
+    logpretty = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)'
+    diffc = diff --cached --word-diff
+    unstage = reset HEAD --
     fixup = !git add -A && git commit --amend --no-edit
+    continue = !git add -A && git rebase --continue
+    prune-remote = "!for branch in $(git br -a --merged | grep dev- | cut -d '/' -f 3); do git push --delete origin $branch; done"
+    bdiff = "!f() { git difftool --tool=kdiff3 --dir-diff origin/$1...origin/$2; }; f"
+    unchanged = "!git ls-files -m | xargs -i git update-index --assume-unchanged \"{}\""
+    parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'"
+    taglog = for-each-ref --format=\"%(refname:short) | %(creatordate:iso) | %(*authorname)\" refs/tags/*
+[remote-hg]
+    insecure = true
+[pull]
+    rebase = true
+[fetch]
+    prune = true
+[merge]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    trustExitCode = true
+[mergetool "tortoise"]
+    cmd = "/c/Program\\ Files/TortoiseSVN/bin/TortoiseMerge.exe" -base:"$BASE" -theirs:"$REMOTE" -mine:"$LOCAL" -merged:"$MERGED"
+[diff]
+    guitool = kdiff3
+[difftool "kdiff3"]
+    trustExitCode = true
+[diff "nodiff"]
+    command = "/c/Program\\ Files/Git/usr/bin/true.exe"
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+[remote "origin"]
+    prune = true
+[core]
+    fscache = true
+    preloadindex = true
+    symlinks = true
+[url "https://github"]
+    insteadOf = git://github
+[credential]
+    helper = manager
