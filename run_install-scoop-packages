@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+scoop install 7zip \
+              azure-cli \
+              bat \
+              dive \
+              fd \
+              fzf \
+              gcloud \
+              git \
+              gitversion \
+              helm \
+              jq \
+              k9s \
+              keepass \
+              kubectl \
+              kubefwd \
+              kustomize \
+              notable \
+              notepadplusplus \
+              ripgrep \
+              screentogif \
+              sudo \
+              windows-terminal \
+              ;

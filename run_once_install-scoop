@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+powershell '[System.Environment]::SetEnvironmentVariable("SCOOP", "C:\dev\apps\scoop", [System.EnvironmentVariableTarget]::User)'
+powershell '[System.Environment]::SetEnvironmentVariable("SCOOP_GLOBAL", "C:\dev\apps\scoop", [System.EnvironmentVariableTarget]::User)'
+
+powershell 'Invoke-Expression (New-Object System.Net.WebClient).DownloadString("https://get.scoop.sh")'
+
+/c/dev/apps/scoop/shims/scoop bucket add main
+/c/dev/apps/scoop/shims/scoop bucket add extras
