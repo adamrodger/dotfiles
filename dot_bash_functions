@@ -15,6 +15,17 @@ gsedit ()
     rm $filename
 }
 
+gctx ()
+{
+    if [ $# -eq 0 ]; then
+        command=list
+    else
+        command="activate $1"
+    fi
+
+    gcloud config configurations $command
+}
+
 kex ()
 {
     label=$1;

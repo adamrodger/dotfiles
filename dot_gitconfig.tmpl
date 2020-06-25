@@ -17,7 +17,7 @@
     unstage = reset HEAD --
     fixup = !git add -A && git commit --amend --no-edit
     continue = !git add -A && git rebase --continue
-    prune-remote = "!for branch in $(git br -a --merged | grep dev- | cut -d '/' -f 3); do git push --delete origin $branch; done"
+    prune-remote = "!for branch in $(git br -a --merged | grep remotes/origin | grep -v origin/master | grep -v origin/release | sed 's|remotes/origin/||g'); do git push --delete origin $branch; done"
     bdiff = "!f() { git difftool --tool=kdiff3 --dir-diff origin/$1...origin/$2; }; f"
     unchanged = "!git ls-files -m | xargs -i git update-index --assume-unchanged \"{}\""
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'"
